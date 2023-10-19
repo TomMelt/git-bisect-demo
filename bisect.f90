@@ -45,7 +45,7 @@ program weathermodel
 
       call sleep(1)
 
-      print *, 'running model version 15'
+      print *, 'running model version 16'
 
       do i = 1, N
         answer(i) = i
@@ -192,5 +192,15 @@ program weathermodel
       print *, 'does important stuff'
 
     end subroutine newsub15
+
+
+    subroutine newsub16(var)
+      implicit none
+
+      integer, intent(inout) :: var
+
+      print *, 'does important stuff'
+
+    end subroutine newsub16
 
 end program weathermodel
