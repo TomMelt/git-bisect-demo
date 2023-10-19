@@ -1,8 +1,7 @@
 program weathermodel
   implicit none
 
-  integer, parameter :: MAX_SIZE = 100
-  integer :: answer(MAX_SIZE)
+  integer, allocatable :: answer(:)
   integer :: num_args, N
   character(len=12) :: arg
 
@@ -14,12 +13,9 @@ program weathermodel
   end if
   call get_command_argument(1, arg)
   read(arg, *) N
-  if (N > MAX_SIZE) then
-    print *, 'Error: you cannot run with N greater than MAX_SIZE'
-    print *, 'N = ',  N
-    print *, 'MAX_SIZE = ',  MAX_SIZE
-    stop 200
-  end if
+
+  ! allocate answer array so that we can generalize code
+  allocate(answer(100))
 
   ! initialize answer array to zero
   answer = 0
@@ -33,6 +29,8 @@ program weathermodel
     print *, 'ERROR :: Model run failed!'
     stop 1
   end if
+
+  deallocate(answer)
 
   contains
 

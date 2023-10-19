@@ -2,7 +2,7 @@
 
 gfortran bisect.f90
 
-# we only ever run simulations with N < 100 (MAX_SIZE)
+# we can now run tests greater than 100 so I have removed the old test
 
 # test 10
 # (this is supposed to pass)
@@ -15,13 +15,6 @@ fi
 # (this is supposed to pass)
 ./a.out 100
 if [[ $? != 0 ]]; then
-    exit 1;
-fi
-
-# test 1000
-# (this is supposed to fail and return error code 200)
-./a.out 1000
-if [[ $? != 200 ]]; then
     exit 1;
 fi
 
