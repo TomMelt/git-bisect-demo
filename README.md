@@ -212,6 +212,8 @@ useful commands:
 1. `git bisect run bisect-test.sh` - create your own script to test the exit code and return 0 for
    pass and non-zero for a failure.
 
+## Summary
+
 `git bisect run` will leave you at the oldest bad commit i.e., the first commit at which the code
 fails (according to your test script - `bisect-test.sh`). You can then do a `git diff HEAD~1` to
 compare with the commit before the bug was introduced. This massively reduces the amount of code you
