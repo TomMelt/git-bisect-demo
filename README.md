@@ -229,7 +229,7 @@ useful commands:
 1. `git bisect run bisect-test.sh` - create your own script to test the exit code and return 0 for
    pass and non-zero for a failure.
 
-<details><summary>example bisect script</summary>
+<details><summary>example bisect script (spoilers)</summary>
 <p>
 
 ```bash
@@ -249,7 +249,29 @@ gfortran bisect.f90
 ```
 
 </p>
-</details> 
+</details>
+
+You should find that the following commit is the first bad commit that introduces the memory bug.
+
+<details><summary>answer (spoilers)</summary>
+<p>
+
+```
+commit 955b3fe1e824d186e70254879b30cc394b3c8ad8 (refs/bisect/bad)
+Author: melt <thomas.meltzer1@gmail.com>
+Date:   Thu Oct 19 15:23:54 2023 +0100
+
+    generalize model
+    
+    we can now use arrays larger than 100.
+    
+    I have updated the tests to remove the check for N < 100
+    
+    all tests pass
+```
+
+</p>
+</details>
 
 ## Summary
 
