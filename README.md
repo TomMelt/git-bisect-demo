@@ -226,7 +226,7 @@ useful commands:
 1. `git bisect bad` - mark the current commit as bad (because it has the memory error)
 1. `git bisect good acb48eb27a8` - mark first commit as good (because it handles large inputs
    correctly)
-1. `git bisect run bisect-test.sh` - create your own script to test the exit code and return 0 for
+1. `git bisect run bash ./bisect-test.sh` - create your own script to test the exit code and return 0 for
    pass and non-zero for a failure.
 
 <details><summary>example bisect script (spoilers)</summary>
