@@ -193,6 +193,20 @@ You will find that it does. Now rather than searching every other commit individ
 a `git bisect` test script called e.g., `bisect-test.sh` that is capable of testing the code for
 larger problem sizes.
 
+## running the tests
+
+To run the tests you either need to change the permission of `tests.sh` to execute
+
+```
+chmod 755 tests.sh
+```
+
+Or you can run it with
+
+```
+bash tests.sh
+```
+
 ## Hints
 * In the early version of the code, `bisect.f90` raises an error code `stop 100` when the input size
   is too large. However in the latest version we get a memory error.
@@ -200,6 +214,9 @@ larger problem sizes.
   deliberate failure `stop 100` and accidental failure)
 * In `bash` `$?` is a special variable that contains the exit code of the previous command - maybe
   you can use this in your `bisect-test.sh` script
+
+**NOTE:** your test script needs to have execute permissions otherwise the `git bisect run` command won't work properly. Either
+change the permission of you bash script or use something like `git bisect run bash bisect-test.sh`.
 
 You can find more information in the `man` pages (`man git bisect`) but here is a summary of the
 useful commands:
@@ -211,6 +228,28 @@ useful commands:
    correctly)
 1. `git bisect run bisect-test.sh` - create your own script to test the exit code and return 0 for
    pass and non-zero for a failure.
+
+<details><summary>example bisect script</summary>
+<p>
+
+```bash
+#!/usr/bin/env bash
+
+# remove old binary
+rm -f a.out
+
+# compile code
+gfortran bisect.f90
+
+# run program for N = 1000
+./a.out 1000
+
+# check if the exit status is 200 (will return 0 if true, 1 if false)
+(( $? == 200 ))
+```
+
+</p>
+</details> 
 
 ## Summary
 
