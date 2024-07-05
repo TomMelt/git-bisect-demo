@@ -279,6 +279,6 @@ Date:   Thu Oct 19 15:23:54 2023 +0100
 fails (according to your test script - `bisect-test.sh`). You can then do a `git diff HEAD~1` to
 compare with the commit before the bug was introduced. This massively reduces the amount of code you
 need to search through to identify the bug. **Note** that `git bisect` doesn't actually find the bug
-for you, it find the first commit where it was introduced. This is still extremely helpful and if
+for you, it finds the first commit where it was introduced. This is still extremely helpful and if
 you follow good software engineering practices (commit early and often) then your commits will be
 small and there will be minimal changes to compare.
